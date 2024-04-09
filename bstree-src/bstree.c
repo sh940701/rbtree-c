@@ -70,8 +70,6 @@ node_t *bstree_find(const bstree *t, const key_t key) {
         return NULL;
     }
 
-    printf("%d\n", key);
-
     node_t *node = t->root;
 
     while (node != NULL) {
