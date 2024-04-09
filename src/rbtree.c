@@ -27,11 +27,27 @@ rbtree *new_rbtree(void) {
     return p;
 }
 
+void to_free(rbtree *t, node_t *node) {
+    if (node->left != t->nil) {
+        to_free(t, node->left);
+    }
+
+    if (node->right != t->nil) {
+        to_free(t, node->right);
+    }
+
+    free(node);
+}
+
 void delete_rbtree(rbtree *t) {
-    // TODO: reclaim the tree nodes's memory
+    if (t->root == t->nil) {
+        free(t->nil);
+        free(t);
+        return;
+    }
+    to_free(t, t->root);
 
-
-
+    free(t->nil);
     free(t);
 }
 
